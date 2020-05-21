@@ -5,23 +5,16 @@ import logo from "./logo.svg"
 import "./App.css"
 import { getPosts, getCurrentPost } from "./redux/actions"
 
-const PostList = () => <div>PostList</div>
-const NewPost = () => <div>NewPost</div>
-const CurrentPost = () => <div>CurrentPost</div>
+import CreatePost from "./containers/CreatePost"
+import CurrentPost from "./containers/CurrentPost"
+import PostsList from "./containers/PostsList"
 
 function App() {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(getPosts())
-    dispatch(getCurrentPost(39))
-  })
-
   return (
     <div className="App">
-      <Route path="/" component={PostList} />
-      <Route exact path="/posts/new" component={NewPost} />
-      <Route path="/posts/:postId(\d+)" component={CurrentPost} />
+      <Route path="/" component={PostsList} />
+      <Route exact path="/posts/new" component={CreatePost} />
+      <Route exact path="/posts/:postId(\d+)" component={CurrentPost} />
     </div>
   )
 }
