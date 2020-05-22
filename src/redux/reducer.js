@@ -1,4 +1,4 @@
-import ACTION_TYPE, { SCREENS } from "./constants"
+import ACTION_TYPE from "./constants"
 
 const {
   POSTS_RESIVED_SUCCESSFUL,
@@ -10,6 +10,7 @@ const {
   CREATE_POST,
   CREATE_POST_SUCCESSFUL,
   CREATE_POST_ERROR,
+  RESET_CREATE_POST,
 } = ACTION_TYPE
 
 const initialState = {
@@ -23,6 +24,7 @@ const initialState = {
 
   createdPostLoader: false,
   createdPostError: false,
+  createdPostSuccesfull: false,
 }
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -77,12 +79,21 @@ export default (state = initialState, action) => {
         ...state,
         createdPostLoader: false,
         createdPostError: false,
+        createdPostSuccesfull: true,
       }
     case CREATE_POST_ERROR:
       return {
         ...state,
         createdPostLoader: false,
         createdPostError: true,
+        createdPostSuccesfull: false,
+      }
+    case RESET_CREATE_POST:
+      return {
+        ...state,
+        createdPostLoader: false,
+        createdPostError: false,
+        createdPostSuccesfull: false
       }
     default:
       return state

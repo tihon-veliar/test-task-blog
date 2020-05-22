@@ -23,7 +23,7 @@ export function* incrementAsync() {
   yield put({ type: "INCREMENT" })
 }
 
-function* fetchPosts(action) {
+function* fetchPosts() {
   try {
     const posts = yield call(axios.get, `${apiRoot}/posts`)
     yield put({ type: POSTS_RESIVED_SUCCESSFUL, payload: posts.data })
@@ -46,7 +46,7 @@ function* fetchCurrentPost(action) {
 
 function* postPost(action) {
   try {
-    const createPost = yield call(axios, {
+    yield call(axios, {
       method: "post",
       url: `${apiRoot}/posts`,
       data: action.payload,

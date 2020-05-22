@@ -1,11 +1,15 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
+import { v1 as uuidv1 } from "uuid"
 
 import Post from "../../components/Post"
+import Comments from "../../components/Comments"
 
 import { getCurrentPost } from "../../redux/actions"
-import { OverlayConteiner } from "../../AppStyled"
+import { OverlayConteiner, CloseBtn, Loader, Conteiner, ErrorBlock } from "../../AppStyled"
+import useLockBodyScroll from "../../utils/useLockBodyScroll"
 
 const CurrentPost = ({
   match: {
@@ -17,20 +21,43 @@ const CurrentPost = ({
   useEffect(() => {
     dispatch(getCurrentPost(postId))
   }, [dispatch, postId])
-
-  const {
-    currentPost: { title = "", body = "", id = null, comments = [] },
-    currentPostError,
-  } = useSelector((store) => {
-    return {
-      currentPost: store.currentPost,
-      currentPostError: store.currentPostError,
+  useLockBodyScroll()
+  const { currentPost, currentPostError, currentPostLoad } = useSelector(
+    (store) => {
+      return {
+        currentPost: store.currentPost,
+        currentPostError: store.currentPostError,
+        currentPostLoad: store.currentPostLoad,
+      }
     }
-  })
+  )
+
+  const renderItems = (error, load, { title, body, comments }) => {
+    if (load) {
+      return <Loader />
+    }
+    if (error) {
+      return <ErrorBlock>ERROR</ErrorBlock>
+    }
+    return (
+      <>
+        <Link to="/">
+          <CloseBtn>X</CloseBtn>
+        </Link>
+        <Post title={title} body={body} fulWidth={true}/>
+        {comments &&
+          comments.map((comment) => (
+            <Comments body={comment.body} key={uuidv1()} />
+          ))}
+      </>
+    )
+  }
 
   return (
     <OverlayConteiner>
-      {currentPostError ? <p>Error</p> : <Post title={title} body={body} />}
+      <Conteiner>
+        {renderItems(currentPostError, currentPostLoad, currentPost)}
+      </Conteiner>
     </OverlayConteiner>
   )
 }

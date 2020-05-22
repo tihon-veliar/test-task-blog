@@ -1,5 +1,5 @@
 import React from "react"
-import { ThemeProvider, GlobalStyle } from "styled-components"
+import { ThemeProvider } from "styled-components"
 import PropTypes from "prop-types"
 
 export const size = {
@@ -14,6 +14,7 @@ export const theme = {
     middleGrey: "#d3d4d6",
     darkGrey: "#2c3632",
     lightGrey: "#f0f1f4",
+    commentsBg: "#e2e6e7",
   },
   text: {
     fontFamily: `'Roboto', sans-serif`,
