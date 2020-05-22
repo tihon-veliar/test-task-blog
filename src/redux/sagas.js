@@ -1,4 +1,4 @@
-import { put, takeEvery, call, takeLatest } from "redux-saga/effects"
+import { put, call, takeLatest } from "redux-saga/effects"
 import axios from "axios"
 import ACTION_TYPE from "./constants"
 
@@ -44,7 +44,25 @@ function* fetchCurrentPost(action) {
   }
 }
 
+function* postPost(action) {
+  try {
+    const createPost = yield call(axios, {
+      method: "post",
+      url: `${apiRoot}/posts`,
+      data: action.payload,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    yield put({ type: CREATE_POST_SUCCESSFUL })
+    yield put({ type: POSTS_RESIVED })
+  } catch (error) {
+    yield put({ CREATE_POST_ERROR })
+  }
+}
+
 export default function* rootSaga() {
   yield takeLatest(POSTS_RESIVED, fetchPosts)
   yield takeLatest(CURRENT_POST_RESIVED, fetchCurrentPost)
+  yield takeLatest(CREATE_POST, postPost)
 }

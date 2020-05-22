@@ -10,3 +10,7 @@ export function getPosts() {
 export function getCurrentPost(id) {
   return { type: CURRENT_POST_RESIVED, payload: { id } }
 }
+
+export function createPost(payload) {
+  return { type: CREATE_POST, payload }
+}
