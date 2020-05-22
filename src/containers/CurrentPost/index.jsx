@@ -1,7 +1,11 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import PropTypes from "prop-types"
+
+import Post from "../../components/Post"
+
 import { getCurrentPost } from "../../redux/actions"
+import { OverlayConteiner } from "../../AppStyled"
 
 const CurrentPost = ({
   match: {
@@ -25,16 +29,9 @@ const CurrentPost = ({
   })
 
   return (
-    <div>
-      {currentPostError ? (
-        <p>Error</p>
-      ) : (
-        <>
-          <p>{title}</p>
-          <p>{body}</p>
-        </>
-      )}
-    </div>
+    <OverlayConteiner>
+      {currentPostError ? <p>Error</p> : <Post title={title} body={body} />}
+    </OverlayConteiner>
   )
 }
 

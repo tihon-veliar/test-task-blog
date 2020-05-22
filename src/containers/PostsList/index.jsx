@@ -1,15 +1,12 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import styled, { css } from "styled-components"
+import styled from "styled-components"
+import { v1 as uuidv1 } from "uuid"
 import { getPosts } from "../../redux/actions"
+import { MainContainer } from "../../AppStyled"
 
-const Title = styled.h3`
-  background-color: #acacac;
-  margin: 30px;
-  font-size: 15px;
-  padding: 15px;
-`
+import Post from "../../components/Post"
 
 const PostsList = () => {
   const dispatch = useDispatch()
@@ -25,20 +22,17 @@ const PostsList = () => {
   })
 
   return (
-    <div>
+    <MainContainer>
       {postsListError ? (
         <p>Post Error</p>
       ) : (
         <>
-          {postsList.map((item) => (
-            <>
-              <Title>{item.title}</Title>
-              <p>{item.body}</p>
-            </>
+          {postsList.map(({ title, body }) => (
+            <Post key={uuidv1()} title={title} body={body} pushable />
           ))}
         </>
       )}
-    </div>
+    </MainContainer>
   )
 }
 
