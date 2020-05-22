@@ -5,9 +5,8 @@
 A simple test project for viewing and creating blog entries
 
 ## Start Instructions
-Сlone the repository. 
-After go to the project directory, 
-After go to the project directory and run the command:
+Сlone the repository. <br/>
+After go to the project directory and run the command:<br/>
 ### `npm i` 
 Then select one of the available scripts.
 
