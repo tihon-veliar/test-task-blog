@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/tihon-veliar/test-task-blog/static/css/main.af1018e8.chunk.css",
+    "main.js": "/tihon-veliar/test-task-blog/static/js/main.0ffc44ee.chunk.js",
+    "runtime-main.js": "/tihon-veliar/test-task-blog/static/js/runtime-main.be4ff223.js",
+    "static/js/2.a1d691f4.chunk.js": "/tihon-veliar/test-task-blog/static/js/2.a1d691f4.chunk.js",
+    "index.html": "/tihon-veliar/test-task-blog/index.html",
+    "precache-manifest.0732ca2e36327e165684d931e5cf39c1.js": "/tihon-veliar/test-task-blog/precache-manifest.0732ca2e36327e165684d931e5cf39c1.js",
+    "service-worker.js": "/tihon-veliar/test-task-blog/service-worker.js",
+    "static/js/2.a1d691f4.chunk.js.LICENSE.txt": "/tihon-veliar/test-task-blog/static/js/2.a1d691f4.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.be4ff223.js",
+    "static/js/2.a1d691f4.chunk.js",
+    "static/css/main.af1018e8.chunk.css",
+    "static/js/main.0ffc44ee.chunk.js"
+  ]
+}
